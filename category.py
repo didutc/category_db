@@ -8,7 +8,7 @@ import urllib.request
 import warnings
 from alive_progress import alive_bar
 import os
-
+import doubleagent
 
 class category:  # 카테고리에서 서브 카테고리 없으면 출력 불가
     def __init__(self):
@@ -19,7 +19,6 @@ class category:  # 카테고리에서 서브 카테고리 없으면 출력 불�
     def Run(self):  # 파일 실행 함수
         
         for li in range(1,10):
-            print(li)
             filename_list = str(li)
             name_list_list, id_list_list = self.Scoutcategory(filename_list)
             reverseCategory_list = self.Reversecategory(filename_list)
@@ -193,19 +192,29 @@ class category:  # 카테고리에서 서브 카테고리 없으면 출력 불�
             os.mkdir(path)
         except:
             pass
+        name_list = doubleagent.ll2l(name_list_list)
+        id_list = doubleagent.ll2l(id_list_list)
+        data = pd.DataFrame({"이름": name_list, "id": id_list})
+
+        data.to_csv(
+            path + "\\""ALL_category.csv",
+            mode="w",
+            encoding="utf-8-sig",
+            index=False,
+        )        
         finalname_list = []
         finalid_list = []
-        for filename, name_list, id_list in zip(filename_list, name_list_list, id_list_list):
-            #
+        # for filename, name_list, id_list in zip(filename_list, name_list_list, id_list_list):
+        #     #
 
-            data = pd.DataFrame({"이름": name_list, "id": id_list})
+        #     data = pd.DataFrame({"이름": name_list, "id": id_list})
 
-            data.to_csv(
-                path + "\\" + filename + "_category.csv",
-                mode="w",
-                encoding="utf-8-sig",
-                index=False,
-            )
+        #     data.to_csv(
+        #         path + "\\" + filename + "_category.csv",
+        #         mode="w",
+        #         encoding="utf-8-sig",
+        #         index=False,
+        #     )
 
 # iwillewfewf
 category = category()
