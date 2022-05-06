@@ -14,15 +14,15 @@ class category:  # 카테고리에서 서브 카테고리 없으면 출력 불�
     def __init__(self):
         self.id_array = []
         self.name_array = []
-        self.num = input('카테고리넘버: ')
+
 
     def Run(self):  # 파일 실행 함수
-        filename_list = self.Input()
-        name_list_list, id_list_list = self.Scoutcategory(filename_list)
-        reverseCategory_list = self.Reversecategory(filename_list)
+        for li in range(1,10):
+            name_list_list, id_list_list = self.Scoutcategory(filename_list)
+            reverseCategory_list = self.Reversecategory(filename_list)
 
-        self.Makecsv(reverseCategory_list, name_list_list, id_list_list)
-        return reverseCategory_list
+            self.Makecsv(reverseCategory_list, name_list_list, id_list_list)
+            return reverseCategory_list
     # //////////////////////////////// 모든 카테고리가 될수 있도록 바꾸었음 ////////////////////////
 
     def Input(self):
