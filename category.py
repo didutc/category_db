@@ -17,12 +17,16 @@ class category:  # 카테고리에서 서브 카테고리 없으면 출력 불�
 
 
     def Run(self):  # 파일 실행 함수
-        
+        name_list_list_list = []
+        id_list_list_list =[]
         for li in range(1,10):
             filename_list = str(li)
             name_list_list, id_list_list = self.Scoutcategory(filename_list)
             reverseCategory_list = self.Reversecategory(filename_list)
-
+            name_list_list_list.append(name_list_list)
+            id_list_list_list.append(id_list_list)
+        name_list_list = doubleagent.ll2l(name_list_list_list)
+        id_list_list = doubleagent.ll2l(id_list_list_list)
         self.Makecsv(reverseCategory_list, name_list_list, id_list_list)
         # return reverseCategory_list
     # //////////////////////////////// 모든 카테고리가 될수 있도록 바꾸었음 ////////////////////////
